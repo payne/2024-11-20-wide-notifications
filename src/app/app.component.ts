@@ -1,12 +1,10 @@
-// app.component.ts
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatMenuModule } from '@angular/material/menu';
-import { NotificationService } from './services/notification.service';
-import { Notification } from './models/notification.model';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-root',
@@ -16,57 +14,62 @@ import { Notification } from './models/notification.model';
     MatToolbarModule,
     MatIconModule,
     MatBadgeModule,
-    MatMenuModule
+    MatMenuModule,
+    MatButtonModule
   ],
   template: `
     <mat-toolbar color="primary">
-      <span>Notification App</span>
-      <span class="spacer"></span>
+      <span>My App</span>
+      <span style="flex: 1 1 auto;"></span>
       <button mat-icon-button [matMenuTriggerFor]="menu">
-        <mat-icon [matBadge]="notifications.length" matBadgeColor="warn">
-          notifications
-        </mat-icon>
+        <mat-icon [matBadge]="3" matBadgeColor="warn">notifications</mat-icon>
       </button>
-      <mat-menu #menu="matMenu">
-        <div class="notification-menu">
-          @if (notifications.length === 0) {
-            <button mat-menu-item disabled>No notifications</button>
-          } @else {
-            @for (notification of notifications; track notification.id) {
-              <button mat-menu-item>
-                <mat-icon>{{ notification.icon }}</mat-icon>
-                <span>{{ notification.message }}</span>
-              </button>
-            }
-          }
+      <mat-menu #menu="matMenu" class="wide-menu">
+        <div class="notification-items">
+          <button mat-menu-item>
+            <mat-icon>message</mat-icon>
+            <span>New message from John</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>local_shipping</mat-icon>
+            <span>Your order has been shipped</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>event</mat-icon>
+            <span>Meeting reminder: Team sync at 2 PM</span>
+          </button>
         </div>
       </mat-menu>
     </mat-toolbar>
-    <div class="content">
-      <h1>Welcome to {{ title }}!</h1>
-    </div>
   `,
   styles: [`
-    .spacer {
-      flex: 1 1 auto;
+    :host {
+      display: block;
     }
 
-    .content {
-      padding: 20px;
+    ::ng-deep .wide-menu {
+      max-width: none !important;
     }
 
-    .notification-menu {
-      max-height: 300px;
-      overflow-y: auto;
+    ::ng-deep .mat-mdc-menu-panel.wide-menu {
+      width: 800px;
+    }
+
+    .notification-items {
+      width: 100%;
+    }
+
+    ::ng-deep .notification-items .mat-mdc-menu-item {
+      height: auto;
+      line-height: 1.5;
+      padding: 12px 16px;
+    }
+
+    ::ng-deep .notification-items .mat-mdc-menu-item .mat-icon {
+      margin-right: 16px;
     }
   `]
 })
 export class AppComponent {
   title = 'notification-app';
-  notifications: Notification[] = [];
-
-  constructor(private notificationService: NotificationService) {
-    this.notifications = this.notificationService.getNotifications();
-  }
 }
-
