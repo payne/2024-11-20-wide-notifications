@@ -6,3 +6,34 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+.mat-mdc-menu-panel {
+  max-width: 800px !important;
+}
+
+.mdc-menu-surface {
+  max-width: 800px !important;
+}
+
+.mat-mdc-menu-content {
+  width: 800px;
+}
+
+.cdk-overlay-pane {
+  width: 800px !important;
+}
+
+.notification-items {
+  width: 800px;
+}
+
+.mat-mdc-menu-item {
+  white-space: normal;
+  height: auto;
+  line-height: 1.5;
+  padding: 12px 16px;
+}
+
+.mat-mdc-menu-item .mat-icon {
+  margin-right: 16px;
+}

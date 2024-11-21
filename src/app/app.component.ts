@@ -24,11 +24,11 @@ import { MatButtonModule } from '@angular/material/button';
       <button mat-icon-button [matMenuTriggerFor]="menu">
         <mat-icon [matBadge]="3" matBadgeColor="warn">notifications</mat-icon>
       </button>
-      <mat-menu #menu="matMenu" class="notification-menu">
+      <mat-menu #menu="matMenu">
         <div class="notification-items">
           <button mat-menu-item>
             <mat-icon>message</mat-icon>
-            <span>New message from John</span>
+            <span>New message from John - Testing long content to see the full width of 800px in action</span>
           </button>
           <button mat-menu-item>
             <mat-icon>local_shipping</mat-icon>
@@ -42,31 +42,7 @@ import { MatButtonModule } from '@angular/material/button';
       </mat-menu>
     </mat-toolbar>
   `,
-  styles: [`
-    :host {
-      display: block;
-    }
-
-    :host .mat-mdc-menu-panel.notification-menu {
-      width: 400px;
-      max-width: none !important;
-    }
-
-    :host .notification-items {
-      width: 100%;
-    }
-
-    :host .notification-items .mat-mdc-menu-item {
-      height: auto;
-      line-height: 1.5;
-      padding: 12px 16px;
-    }
-
-    :host .notification-items .mat-mdc-menu-item .mat-icon {
-      margin-right: 16px;
-    }
-  `],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: []
 })
 export class AppComponent {
   title = 'notification-app';
