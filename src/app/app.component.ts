@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -24,7 +24,7 @@ import { MatButtonModule } from '@angular/material/button';
       <button mat-icon-button [matMenuTriggerFor]="menu">
         <mat-icon [matBadge]="3" matBadgeColor="warn">notifications</mat-icon>
       </button>
-      <mat-menu #menu="matMenu" class="wide-menu">
+      <mat-menu #menu="matMenu" class="notification-menu">
         <div class="notification-items">
           <button mat-menu-item>
             <mat-icon>message</mat-icon>
@@ -47,28 +47,26 @@ import { MatButtonModule } from '@angular/material/button';
       display: block;
     }
 
-    ::ng-deep .wide-menu {
+    :host .mat-mdc-menu-panel.notification-menu {
+      width: 400px;
       max-width: none !important;
     }
 
-    ::ng-deep .mat-mdc-menu-panel.wide-menu {
-      width: 800px;
-    }
-
-    .notification-items {
+    :host .notification-items {
       width: 100%;
     }
 
-    ::ng-deep .notification-items .mat-mdc-menu-item {
+    :host .notification-items .mat-mdc-menu-item {
       height: auto;
       line-height: 1.5;
       padding: 12px 16px;
     }
 
-    ::ng-deep .notification-items .mat-mdc-menu-item .mat-icon {
+    :host .notification-items .mat-mdc-menu-item .mat-icon {
       margin-right: 16px;
     }
-  `]
+  `],
+  encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
   title = 'notification-app';
